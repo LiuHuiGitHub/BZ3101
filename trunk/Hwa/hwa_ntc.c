@@ -113,6 +113,18 @@ void hwa_ntcInit(void)
 	sys_adcInit();
 }
 
+#define AD_VALUE_BUFF_LEN		100
+UINT32 adValueSum = 0;
+static UINT8 adValueIndex = 0;
+void hwa_ntcHandler10ms(void)
+{
+	if(adValueIndex < AD_VALUE_BUFF_LEN)
+	{
+		adValueSum += sys_adcValue(4);
+		adValueIndex++;
+	}
+}
+
 
 static UINT8 u8_tempOld = 0;
 UINT16 u16_adValue = 0;
@@ -121,7 +133,9 @@ void hwa_ntcHandler500ms(void)
 	UINT16 u16_thresholdH;
 	UINT16 u16_thresholdL;
 	UINT8 u8_tempNew;
-	u16_adValue = (u16_adValue *2 + sys_adcValue(4)*3)/5;
+	u16_adValue = (u16_adValue *2 + adValueSum/adValueIndex*3)/5;
+	adValueSum = 0;
+	adValueIndex = 0;
 	for(u8_tempNew=0; u8_tempNew< NUM_OF_TEMP; u8_tempNew++)
 	{
 		if(u16_adValue < c_u16_ntcTable[u8_tempNew])

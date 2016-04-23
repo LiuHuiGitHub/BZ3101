@@ -336,6 +336,7 @@ void app_testHandler100ms(void)
 					else
 					{
 						u8_keyTimeDelay = 30;
+						u8_setTime = SHENGXIAWORK_TIME;
 						drv_ledRequest(3, SHENGXIAWORK_TIME);
 					}
 				}
@@ -364,6 +365,7 @@ void app_testHandler100ms(void)
 					{
 						u8_keyTimeDelay = 0;
 						e_modeOld = e_mode;
+						u8_setTime = SHENGXIAWORK_TIME;
 						b_settingSaveFlag = TRUE;
 						e_mode = MODE_TIME_SET;
 					}

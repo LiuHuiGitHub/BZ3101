@@ -4,6 +4,7 @@
 static BOOL b_taskHandler1ms = FALSE;
 static BOOL b_taskCycle100ms = FALSE;
 
+static UINT8 u8_taskCycleCount10ms = 0;
 static UINT8 u8_taskCycleCount100ms = 0;
 static UINT8 u8_taskCycleCount500ms = 0;
 
@@ -82,6 +83,11 @@ int main(void)
 			{
 				delay--;
 				hwa_ntcHandler500ms();
+			}
+			if(++u8_taskCycleCount10ms >= 10)
+			{
+				u8_taskCycleCount10ms = 0;
+				hwa_ntcHandler10ms();
 			}
             if(++u8_taskCycleCount100ms >= 100)
             {

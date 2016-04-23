@@ -4,6 +4,7 @@
 #include "typedef.h"
 
 void hwa_ntcInit(void);
+void hwa_ntcHandler10ms(void);
 void hwa_ntcHandler500ms(void);
 UINT8 hwa_ntcGetTemp(void);
 
