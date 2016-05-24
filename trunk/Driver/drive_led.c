@@ -163,19 +163,19 @@ void drv_ledHandler1ms(void)
 		}
 		if(PC_IDR_IDR6 == 0)
 		{
-			b_keyTempSet = TRUE;
-		}
-		else
-		{
-			b_keyTempSet = FALSE;
-		}
-		if(PC_IDR_IDR4 == 0)
-		{
 			b_keyTimeSet = TRUE;
 		}
 		else
 		{
 			b_keyTimeSet = FALSE;
+		}
+		if(PC_IDR_IDR4 == 0)
+		{
+			b_keyTempSet = TRUE;
+		}
+		else
+		{
+			b_keyTempSet = FALSE;
 		}
 		
 		PC_DDR_DDR6 = 1;
